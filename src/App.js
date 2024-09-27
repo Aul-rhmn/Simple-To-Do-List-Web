@@ -20,8 +20,12 @@ function App() {
     return new Promise((resolve) => {
       setTimeout(() => {
         console.log("Page refreshed!");
+        const updatedTodos = JSON.parse(localStorage.getItem("todolist"));
+        if (updatedTodos) {
+          setTodos(updatedTodos);
+        }
         resolve();
-      }, 1000);
+      }, 500);
     });
   };
 
