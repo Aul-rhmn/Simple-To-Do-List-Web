@@ -15,8 +15,10 @@ function App() {
   const [newDesc, setNewDesc] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const refresh = () => {
+    setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
         console.log("Page refreshed!");
@@ -24,6 +26,7 @@ function App() {
         if (updatedTodos) {
           setTodos(updatedTodos);
         }
+        setLoading(false);
         resolve();
       }, 500);
     });
