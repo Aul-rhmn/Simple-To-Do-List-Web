@@ -3,7 +3,6 @@ import { MdDeleteForever } from "react-icons/md";
 import { BsCheck2All } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import { Fade } from "react-awesome-reveal";
-import PullToRefresh from "react-pull-to-refresh";
 
 
 import "./App.css";
@@ -15,22 +14,7 @@ function App() {
   const [newDesc, setNewDesc] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const refresh = () => {
-    setLoading(true);
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("Page refreshed!");
-        const updatedTodos = JSON.parse(localStorage.getItem("todolist"));
-        if (updatedTodos) {
-          setTodos(updatedTodos);
-        }
-        setLoading(false);
-        resolve();
-      }, 500);
-    });
-  };
 
   const handleAddTodo = () => {
     if (editIndex !== null) {
@@ -115,7 +99,6 @@ function App() {
   };
 
   return (
-    <PullToRefresh onRefresh={refresh}>
     <div className="App">
       <Fade delay={100}>
         <div className="web-title">
@@ -226,7 +209,6 @@ function App() {
         </div>
       </Fade>
     </div>
-    </PullToRefresh>
   );
 }
 
