@@ -98,111 +98,114 @@ function App() {
 
   return (
     <div className="App">
-      <div className="web-title">
-        <h1>To Do List</h1>
-      </div>
+      <Fade delay={100}>
+        <div className="web-title">
+          <h1>To Do List</h1>
+        </div>
+      </Fade>
+      <Fade direction="up" delay={200}>
+        <div className="todo-wrapper">
+          <div className="todo-input">
+            <div className="input-item">
+              <label>Title</label>
+              <input
+                type="text"
+                value={newTitle}
+                onChange={(e) => setNewTitle(e.target.value)}
+                placeholder="Task Title"
+              />
+            </div>
+            <div className="input-item">
+              <label>Descriptions</label>
+              <input
+                type="text"
+                value={newDesc}
+                onChange={(e) => setNewDesc(e.target.value)}
+                placeholder="Description Task"
+              />
+            </div>
+            <div className="input-btn">
+              <button
+                className="primaryBtn"
+                onClick={handleAddTodo}
+                type="button"
+              >
+                Add
+              </button>
+            </div>
+          </div>
 
-      <div className="todo-wrapper">
-        <div className="todo-input">
-          <div className="input-item">
-            <label>Title</label>
-            <input
-              type="text"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-              placeholder="Task Title"
-            />
-          </div>
-          <div className="input-item">
-            <label>Descriptions</label>
-            <input
-              type="text"
-              value={newDesc}
-              onChange={(e) => setNewDesc(e.target.value)}
-              placeholder="Description Task"
-            />
-          </div>
-          <div className="input-btn">
+          <div className="btn-area">
             <button
-              className="primaryBtn"
-              onClick={handleAddTodo}
-              type="button"
+              className={`secondaryBtn ${isCompleted === false && "active"}`}
+              onClick={() => setIsCompleted(false)}
             >
-              Add
+              Todo
+            </button>
+            <button
+              className={`secondaryBtn ${isCompleted === true && "active"}`}
+              onClick={() => setIsCompleted(true)}
+            >
+              Completed
             </button>
           </div>
+
+          <div className="todo-list">
+            {isCompleted === false &&
+              allTodos.map((item, index) => {
+                return (
+                  <Fade key={index} delay={index * 200}>
+                    <div className="todo-list-item" key={index}>
+                      <div>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                      </div>
+                      <div className="icon-container">
+                        <MdEdit
+                          className="edit-icon"
+                          onClick={() => handleEditTodo(index)}
+                        />
+
+                        <MdDeleteForever
+                          className="icon"
+                          onClick={() => handleDelete(index)}
+                        />
+                        <BsCheck2All
+                          className="check-icon"
+                          onClick={() => handleCompleted(index)}
+                        />
+                      </div>
+                    </div>
+                  </Fade>
+                );
+              })}
+
+            {isCompleted === true &&
+              completedTodos.map((item, index) => {
+                return (
+                  <Fade key={index} delay={index * 200}>
+                    <div className="todo-list-item" key={index}>
+                      <div>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                        <p>
+                          Completed on <em>{item.completedOn}</em>
+                        </p>
+                      </div>
+                      <div className="icon-container">
+                        <MdDeleteForever
+                          className="icon"
+                          onClick={() => handleDeleteCompletedTodo(index)}
+                          title="Delete?"
+                        />
+                      </div>
+                    </div>
+                  </Fade>
+                );
+              })}
+          </div>
         </div>
-
-        <div className="btn-area">
-          <button
-            className={`secondaryBtn ${isCompleted === false && "active"}`}
-            onClick={() => setIsCompleted(false)}
-          >
-            Todo
-          </button>
-          <button
-            className={`secondaryBtn ${isCompleted === true && "active"}`}
-            onClick={() => setIsCompleted(true)}
-          >
-            Completed
-          </button>
-        </div>
-
-        <div className="todo-list">
-          {isCompleted === false &&
-            allTodos.map((item, index) => {
-              return (
-                <Fade key={index} delay={index * 200}>
-                  <div className="todo-list-item" key={index}>
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </div>
-                    <div className="icon-container">
-                      <MdEdit
-                        className="edit-icon"
-                        onClick={() => handleEditTodo(index)}
-                      />
-
-                      <MdDeleteForever
-                        className="icon"
-                        onClick={() => handleDelete(index)}
-                      />
-                      <BsCheck2All
-                        className="check-icon"
-                        onClick={() => handleCompleted(index)}
-                      />
-                    </div>
-                  </div>
-                </Fade>
-              );
-            })}
-
-          {isCompleted === true &&
-            completedTodos.map((item, index) => {
-              return (
-                <Fade key={index} delay={index * 200}>
-                  <div className="todo-list-item" key={index}>
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                      <p>
-                        Completed on <em>{item.completedOn}</em>
-                      </p>
-                    </div>
-                    <div className="icon-container">
-                      <MdDeleteForever
-                        className="icon"
-                        onClick={() => handleDeleteCompletedTodo(index)}
-                        title="Delete?"
-                      />
-                    </div>
-                  </div>
-                </Fade>
-              );
-            })}
-        </div>
-      </div>
+      </Fade>
     </div>
   );
 }
