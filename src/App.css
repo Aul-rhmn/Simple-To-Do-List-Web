@@ -1,38 +1,200 @@
-.App {
+/* Base styling for large screens (no changes needed for large screens) */
+body {
+  background-color: #070F2B;
+  color: white;
+  overflow: hidden;
+}
+
+.web-title {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.todo-wrapper {
+  background-color: #1B1A55;
+  padding: 2%;
+  border-radius: 15px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0px 3px 5px #9290C3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todo-input {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border-bottom: 1px solid rgb(255, 255, 255);
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 25px;
+}
+
+.input-item label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.input-item input {
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  width: 250px;
+}
+
+.primaryBtn {
+  background-color: #433eb9;
   color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 30px;
+  padding: 10px;
+  width: 60px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.primaryBtn:hover {
+  background-color: #2d2a80;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.secondaryBtn {
+  background-color: #4e4e58;
+  color: white;
+  border: none;
+  margin-top: 30px;
+  padding: 10px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #433eb9;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-area {
+  margin-bottom: 15px;
+}
+
+.todo-list-item {
+  background-color: #242352;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-radius: 9px;
+  margin-bottom: 10px;
+  box-shadow: 0px 2px 3px #9290C3;
+}
+
+.todo-list-item h3 {
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+.todo-list-item p {
+  font-size: 14px;
+  color: white;
+  margin-top: 5px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon, .check-icon, .edit-icon {
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #b93e3e;
+}
+
+.edit-icon {
+  font-size: 25px;
+  margin-right: 20px;
+}
+
+.edit-icon:hover {
+  color: rgb(38, 45, 255);
+}
+
+.check-icon {
+  font-size: 35px;
+  margin-left: 10px;
+  color: #6a65ff;
+}
+
+.check-icon:hover {
+  color: #2fab26;
+}
+
+/* Media Query for small screens (make it responsive for small screens only) */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .todo-wrapper {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .todo-input {
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+
+  .input-item {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .input-item input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .input-btn {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .primaryBtn {
+    width: 100%;
+  }
+
+  .todo-list-item {
+    flex-direction: column; 
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .icon-container {
+    margin-top: 10px;
   }
 }
