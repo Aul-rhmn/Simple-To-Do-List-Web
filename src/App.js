@@ -3,6 +3,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { BsCheck2All } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import { Fade } from "react-awesome-reveal";
+import PullToRefresh from "react-pull-to-refresh";
+
 
 import "./App.css";
 
@@ -13,6 +15,15 @@ function App() {
   const [newDesc, setNewDesc] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
+
+  const refresh = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log("Page refreshed!");
+        resolve();
+      }, 1000);
+    });
+  };
 
   const handleAddTodo = () => {
     if (editIndex !== null) {
@@ -97,6 +108,7 @@ function App() {
   };
 
   return (
+    <PullToRefresh onRefresh={refresh}>
     <div className="App">
       <Fade delay={100}>
         <div className="web-title">
@@ -207,6 +219,7 @@ function App() {
         </div>
       </Fade>
     </div>
+    </PullToRefresh>
   );
 }
 
